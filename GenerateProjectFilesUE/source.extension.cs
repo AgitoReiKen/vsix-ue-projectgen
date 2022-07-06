@@ -9,7 +9,7 @@ namespace GenerateProjectFilesUE
     {
         public const string Id = "GenerateProjectFilesUE.9cfd5622-a88d-4f81-8773-eba67948ef19";
         public const string Name = "GenerateProjectFilesUE";
-        public const string Description = @"Adds a command to project's context <Generate Project Files> using UnrealVersionSelectorA context util ";
+        public const string Description = @"Adds a command to project's context <Generate Project Files> using UnrealVersionSelector context util ";
         public const string Language = "en-US";
         public const string Version = "1.0";
         public const string Author = "AgitoReiKen";

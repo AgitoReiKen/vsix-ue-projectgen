@@ -5,7 +5,7 @@
         <DisplayName>GenerateProjectFilesUE</DisplayName>
         <Description xml:space="preserve">Adds a command to project's context &lt;Generate Project Files&gt; using UnrealVersionSelectorA context util </Description>
         <Icon>Resources\transparent-mini-logo.png</Icon>
-        <PreviewImage>Resources\background-normal-logo.png</PreviewImage>
+        <PreviewImage>Resources\transparent-mini-logo.png</PreviewImage>
         <Tags>unreal, unreal engine, ue, ue4 ,ue5, engine, generate, project, files</Tags>
         <Preview>true</Preview>
     </Metadata>

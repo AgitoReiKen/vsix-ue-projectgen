@@ -1,29 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
-    <Metadata>
-        <Identity Id="GenerateProjectFilesUE.9cfd5622-a88d-4f81-8773-eba67948ef19" Version="1.0" Language="en-US" Publisher="AgitoReiKen" />
-        <DisplayName>GenerateProjectFilesUE</DisplayName>
-        <Description xml:space="preserve">Adds a command to project's context &lt;Generate Project Files&gt; using UnrealVersionSelector context util </Description>
-        <Icon>Resources\transparent-mini-logo.png</Icon>
-        <PreviewImage>Resources\transparent-mini-logo.png</PreviewImage>
-        <Tags>unreal, unreal engine, ue, ue4 ,ue5, engine, generate, project, files</Tags>
-        <Preview>true</Preview>
-    </Metadata>
-    <Installation>
-        <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[17.0, 18.0)">
-            <ProductArchitecture>amd64</ProductArchitecture>
-        </InstallationTarget>
-        <InstallationTarget Version="[17.0,18.0)" Id="Microsoft.VisualStudio.Pro">
-            <ProductArchitecture>amd64</ProductArchitecture>
-        </InstallationTarget>
-        <InstallationTarget Version="[17.0,18.0)" Id="Microsoft.VisualStudio.Enterprise">
-            <ProductArchitecture>amd64</ProductArchitecture>
-        </InstallationTarget>
-    </Installation>
-    <Prerequisites>
-        <Prerequisite Id="Microsoft.VisualStudio.Component.CoreEditor" Version="[17.0,)" DisplayName="Visual Studio core editor" />
-    </Prerequisites>
-    <Assets>
-        <Asset Type="Microsoft.VisualStudio.VsPackage" d:Source="Project" d:ProjectName="%CurrentProject%" Path="|%CurrentProject%;PkgdefProjectOutputGroup|" />
-    </Assets>
+<PackageManifest Version="2.0.0"
+	xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011"
+	xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
+	<Metadata>
+		<Identity Id="GenerateProjectFilesUE.9cfd5622-a88d-4f81-8773-eba67948ef19" Version="1.0" Language="en-US" Publisher="AgitoReiKen" />
+		<DisplayName>GenerateProjectFilesUE</DisplayName>
+		<Description xml:space="preserve">Adds a (Generate Project Files) command to .uproject file context</Description>
+		<Icon>Resources\transparent-mini-logo.png</Icon>
+		<PreviewImage>Resources\transparent-mini-logo.png</PreviewImage>
+		<Tags>unreal, unreal engine, ue, ue4 ,ue5, engine, generate, project, files</Tags>
+		<Preview>true</Preview>
+	</Metadata>
+	<Installation>
+		<InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[17.0, 18.0)">
+			<ProductArchitecture>amd64</ProductArchitecture>
+		</InstallationTarget>
+		<InstallationTarget Version="[17.0,18.0)" Id="Microsoft.VisualStudio.Pro">
+			<ProductArchitecture>amd64</ProductArchitecture>
+		</InstallationTarget>
+		<InstallationTarget Version="[17.0,18.0)" Id="Microsoft.VisualStudio.Enterprise">
+			<ProductArchitecture>amd64</ProductArchitecture>
+		</InstallationTarget>
+	</Installation>
+	<Prerequisites>
+		<Prerequisite Id="Microsoft.VisualStudio.Component.CoreEditor" Version="[17.0,)" DisplayName="Visual Studio core editor" />
+	</Prerequisites>
+	<Assets>
+		<Asset Type="Microsoft.VisualStudio.VsPackage" d:Source="Project" d:ProjectName="%CurrentProject%" Path="|%CurrentProject%;PkgdefProjectOutputGroup|" />
+	</Assets>
 </PackageManifest>

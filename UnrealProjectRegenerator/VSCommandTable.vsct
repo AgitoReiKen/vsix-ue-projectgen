@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<CommandTable xmlns="http://schemas.microsoft.com/VisualStudio/2005-10-18/CommandTable"
+              xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+	<Extern href="stdidcmd.h" />
+	<Extern href="vsshlids.h" />
+	<Include href="KnownImageIds.vsct" />
+	<Include href="VSGlobals.vsct" />
+
+	<Commands package="UnrealProjectRegenerator">
+		<Groups>
+			<Group guid="UnrealProjectRegenerator" id="MyMenuGroup" priority="0x0600">
+				<Parent guid="VSMainMenu" id="ItemNode" />
+			</Group>
+		</Groups>
+		<Bitmaps>
+			<Bitmap guid="UnrealProjectRegenerator" href="Resources\unreal.bmp" usedList="MyCommandIcon"></Bitmap>
+		</Bitmaps>
+		<!--This section defines the elements the user can interact with, like a menu command or a button
+        or combo box in a toolbar. -->
+		<Buttons>
+			<Button guid="UnrealProjectRegenerator" id="MyCommand" priority="0x0100" type="Button">
+				<Parent guid="UnrealProjectRegenerator" id="MyMenuGroup" />
+				<Icon guid="UnrealProjectRegenerator" id="MyCommandIcon" />
+				<CommandFlag>IconAndText</CommandFlag> 
+				<CommandFlag>DynamicVisibility</CommandFlag>
+				<CommandFlag>DontCache</CommandFlag>
+				<CommandFlag>TextChanges</CommandFlag>
+				<CommandFlag>TextChangesButton</CommandFlag>
+				<Strings>
+					<ButtonText>Generate Project Files</ButtonText> 
+				</Strings>
+			</Button>
+		</Buttons>
+	</Commands>
+	<VisibilityConstraints>
+		<!-- 
+    This will show or hide the button based on the uiContextSupportedFiles which is specified in
+    the ProvideUIContextRule attribute on the package class in MyPackage.cs. 
+    
+    Note, this only applies when the package hasn't been loaded yet. When loaded, the visibility
+    of the button is controlled by the MenuItemQueryStatus method in MyButton.cs.
+    -->
+		<VisibilityItem guid="UnrealProjectRegenerator" id="MyCommand" context="UIContextSupportedFiles" />
+	</VisibilityConstraints>
+	 
+	<Symbols>
+		<GuidSymbol name="UIContextSupportedFiles" value="{d18bc1eb-721e-40cb-b7af-66aa7304123e}"/>
+		<GuidSymbol name="UnrealProjectRegenerator" value="{cd9f8b51-b49d-4ffc-9f5b-4f4f54d55ce7}">
+			<IDSymbol name="MyMenuGroup" value="0x0002" />
+			<IDSymbol name="MyCommandIcon" value="0x0001" />
+			<IDSymbol name="MyCommand" value="0x0100" />
+		</GuidSymbol>
+	</Symbols>
+</CommandTable>

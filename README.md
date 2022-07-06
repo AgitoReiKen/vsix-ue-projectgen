@@ -7,7 +7,7 @@ The extension makes command by given format
 
 `"{UnrealVersionSelector Path}" /projectfiles "{.uproject Path}"`
 
-(Which is by default used by ue's shell shortcut) and executes it via shell
+(ps. exactly how unreal does) and executes it via shell
 ## How does it know about UnrealVersionSelector?
 Extension tries to grab that information looking at registry
 

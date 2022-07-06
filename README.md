@@ -16,3 +16,6 @@ Extension tries to grab that information looking at registry
 If path remains invalid, then the user will be prompted to set it manually via 
 
 `Tools -> Options -> GenerateProjectFilesUE`
+
+
+## [Marketplace](https://marketplace.visualstudio.com/items?itemName=AgitoReiKen.generateprojectfilesue)

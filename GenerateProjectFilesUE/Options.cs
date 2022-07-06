@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
 
-namespace UnrealProjectRegenerator
+namespace GenerateProjectFilesUE
 {
     internal class DialogPageProvider
     {

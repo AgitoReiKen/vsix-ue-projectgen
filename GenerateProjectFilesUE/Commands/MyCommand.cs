@@ -5,13 +5,19 @@ using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.Threading;
 using Microsoft.Win32;
 
-namespace UnrealProjectRegenerator
+namespace GenerateProjectFilesUE
 {
-
     [Command(PackageIds.MyCommand)]
     internal sealed class MyCommand : BaseCommand<MyCommand>
     {
-        // "X:\Epic Games\Launcher\Engine\Binaries\Win64\UnrealVersionSelector.exe" /projectfiles "%1"
+        //  
+        /// <summary>
+        /// Looks into registry for 'Windows' context menu command to generate project files
+        /// </summary>
+        /// <returns>
+        /// "{path}" /projectfiles "%1" - if exists <br/>
+        /// empty string - otherwise
+        /// </returns>
         async Task<string> TryGetGenCommandhViaRegistryAsync()
         {
             try
@@ -28,8 +34,12 @@ namespace UnrealProjectRegenerator
                 await VS.MessageBox.ShowWarningAsync(ex.Message);
             }
 
-            return "";
+            return null;
         }
+
+        /// <param name="command">"{path}" /projectfiles "%1" </param>
+        /// <returns>{path} - if correct<br/>
+        /// empty string - otherwise</returns>
         string GetPathFromCommand(string command)
         {
             var first = command.IndexOf('"');
@@ -43,44 +53,61 @@ namespace UnrealProjectRegenerator
                 }
             }
 
-            return "";
+            return null;
         }
+        /// <summary>
+        /// Make the same command ue uses, if UVS is found
+        ///  
+        /// </summary>
+        /// <returns>"{path}" /projectfiles "%1" - if UVS is valid<br/>
+        /// empty string - otherwise</returns>
         async Task<string> GetProjectGenCommandAsync()
         {
             var options = await GeneralOptions.GetLiveInstanceAsync();
-            if (System.IO.File.Exists(options.UnrealVersionSelectorPath))
+            if (!String.IsNullOrEmpty(options.UnrealVersionSelectorPath) && System.IO.File.Exists(options.UnrealVersionSelectorPath))
             {
-                var result = $"\"{options.UnrealVersionSelectorPath}\" /projectfiles \"%1\"";
-                return result;
+                return $"\"{options.UnrealVersionSelectorPath}\" /projectfiles \"%1\"";
             }
-            return "";
 
-        }
-        protected override async Task InitializeCompletedAsync()
-        {
-            Command.Supported = false;
-            await TrySetSettingsAsync();
+            return null;
         }
 
         public async Task TrySetSettingsAsync()
         {
             var options = await GeneralOptions.GetLiveInstanceAsync();
-            if (options.UnrealVersionSelectorPath.Length == 0)
+            if (String.IsNullOrEmpty(options.UnrealVersionSelectorPath))
             {
                 var command = await TryGetGenCommandhViaRegistryAsync();
-                options.UnrealVersionSelectorPath = GetPathFromCommand(command);
-                await options.SaveAsync();
+                if (!String.IsNullOrEmpty(command))
+                {
+                    var path = GetPathFromCommand(command);
+                    if (!String.IsNullOrEmpty(path) && System.IO.File.Exists(path))
+                    {
+                        options.UnrealVersionSelectorPath = path;
+                        await options.SaveAsync();
+                    }
+                }
             }
         }
+
+        protected override async Task InitializeCompletedAsync()
+        {
+            Command.Supported = false;
+            // to let user see the options
+            await TrySetSettingsAsync();
+        }
+
         protected override async Task ExecuteAsync(OleMenuCmdEventArgs e)
         {
+            // to gather path automatically if user leaves the path empty
+            await TrySetSettingsAsync();
             var activeItem = await VS.Solutions.GetActiveItemAsync();
             if (activeItem is PhysicalFile file)
             {
                 if (file.Extension.Equals(".uproject"))
                 {
                     var projectGenCommand = await GetProjectGenCommandAsync();
-                    if (projectGenCommand.Length > 0)
+                    if (!String.IsNullOrEmpty(projectGenCommand))
                     {
                         var command = projectGenCommand.Replace("%1", file.Name);
                         command = "\"" + command + "\"";
@@ -94,7 +121,7 @@ namespace UnrealProjectRegenerator
                             Arguments = "/C " + command
                         };
                         process.StartInfo = startInfo;
-                        
+
                         if (!process.Start())
                         {
                             await VS.MessageBox.ShowAsync("Can't start shell");
@@ -102,9 +129,9 @@ namespace UnrealProjectRegenerator
                     }
                     else
                     {
-                        await VS.MessageBox.ShowAsync("Can't find path to UnrealVersionSelector / Can't make a command. Please set path to UVS in Tools -> Options -> UnrealProjectRegenerator");
+                        await VS.MessageBox.ShowAsync(
+                            "Can't find UnrealVersionSelector / Can't make a command. Please set path to UVS in Tools -> Options -> GenerateProjectFilesUE");
                     }
-
                 }
             }
         }
@@ -124,7 +151,6 @@ namespace UnrealProjectRegenerator
                     Command.Visible = true;
                 }
             }
-
         }
     }
 }

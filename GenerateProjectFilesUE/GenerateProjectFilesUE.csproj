@@ -13,8 +13,8 @@
     <ProjectGuid>{4ED791A9-D06F-4A42-83F0-4E24C9749130}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>UnrealProjectRegenerator</RootNamespace>
-    <AssemblyName>UnrealProjectRegenerator</AssemblyName>
+    <RootNamespace>GenerateProjectFilesUE</RootNamespace>
+    <AssemblyName>GenerateProjectFilesUE</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <GeneratePkgDefFile>true</GeneratePkgDefFile>
     <UseCodebase>true</UseCodebase>
@@ -48,7 +48,7 @@
     <Compile Include="Options.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Commands\MyCommand.cs" />
-    <Compile Include="UnrealProjectRegeneratorPackage.cs" />
+    <Compile Include="GenerateProjectFilesUEPackage.cs" />
     <Compile Include="source.extension.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

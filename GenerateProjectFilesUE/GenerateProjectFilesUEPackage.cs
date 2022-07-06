@@ -6,19 +6,19 @@ using System.Runtime.InteropServices;
 using System.Threading;
 using System.ComponentModel;
 
-namespace UnrealProjectRegenerator
+namespace GenerateProjectFilesUE
 {
     [PackageRegistration(UseManagedResourcesOnly = true, AllowsBackgroundLoading = true)]
     [InstalledProductRegistration(Vsix.Name, Vsix.Description, Vsix.Version)]
     [ProvideMenuResource("Menus.ctmenu", 1)]
-    [Guid(PackageGuids.UnrealProjectRegeneratorString)]
+    [Guid(PackageGuids.GenerateProjectFilesUEString)]
     [ProvideUIContextRule(PackageGuids.UIContextSupportedFilesString,
         name: "Supported Files",
         expression: "UnrealProject",
         termNames: new[] { "UnrealProject" },
         termValues: new[] { "HierSingleSelectionName:.uproject$"})]
     [ProvideOptionPage(typeof(DialogPageProvider.General), "UnreaProjectRegenerator", "General", 0, 0, true)]
-    public sealed class UnrealProjectRegeneratorPackage : ToolkitPackage
+    public sealed class GenerateProjectFilesUEPackage : ToolkitPackage
     {
         protected override async Task InitializeAsync(CancellationToken cancellationToken, IProgress<ServiceProgressData> progress)
         {

@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32421.90
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnrealProjectRegenerator", "UnrealProjectRegenerator\UnrealProjectRegenerator.csproj", "{4ED791A9-D06F-4A42-83F0-4E24C9749130}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GenerateProjectFilesUE", "GenerateProjectFilesUE\GenerateProjectFilesUE.csproj", "{4ED791A9-D06F-4A42-83F0-4E24C9749130}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -26,6 +26,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {D0C6AB4B-3521-4928-9D6F-38D72E39BD51}
+		SolutionGuid = {D40A27F3-C562-4BDD-90C2-A7559376B8C9}
 	EndGlobalSection
 EndGlobal
